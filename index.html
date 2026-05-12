@@ -517,6 +517,150 @@
   }
 
   /* ════════════════════════════════════════════════════
+     深化說明展開區 — Aaker 四面向 / 訪談發現
+     ════════════════════════════════════════════════════ */
+  .deepen{
+    margin-top:32px;
+    border-top:2px solid var(--ink);
+    padding-top:32px;
+  }
+  .deepen-intro{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--vermilion);
+    text-transform:uppercase;
+    margin-bottom:24px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .deepen-intro::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--rule);
+  }
+  details.deep{
+    background:var(--paper);
+    border:1px solid var(--rule-thick);
+    border-left:3px solid var(--vermilion);
+    margin-bottom:14px;
+    transition:box-shadow .25s;
+  }
+  details.deep[open]{
+    box-shadow:0 4px 14px rgba(26,22,18,.08);
+  }
+  details.deep summary{
+    list-style:none;
+    cursor:pointer;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    user-select:none;
+    transition:background .2s;
+  }
+  details.deep summary::-webkit-details-marker{ display:none; }
+  details.deep summary:hover{ background:var(--paper-deep); }
+  details.deep .d-num{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.15em;
+    color:var(--vermilion);
+    font-weight:700;
+    flex-shrink:0;
+    min-width:78px;
+  }
+  details.deep .d-title{
+    flex:1;
+    font-family:"Noto Serif TC",serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.4;
+  }
+  details.deep .d-title .en{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-left:8px;
+  }
+  details.deep .d-icon{
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--vermilion);
+    font-family:"JetBrains Mono",monospace;
+    font-size:16px;
+    font-weight:700;
+    transition:transform .25s;
+    flex-shrink:0;
+  }
+  details.deep[open] .d-icon{ transform:rotate(45deg); }
+  details.deep .d-content{
+    padding:0 22px 24px 116px;
+    border-top:1px dashed var(--rule);
+    padding-top:18px;
+    margin-top:0;
+  }
+  @media (max-width:700px){
+    details.deep .d-content{ padding-left:22px; }
+  }
+  details.deep .d-content h4{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;
+    letter-spacing:.15em;
+    color:var(--vermilion);
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:8px;
+    margin-top:18px;
+  }
+  details.deep .d-content h4:first-of-type{ margin-top:6px; }
+  details.deep .d-content p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  details.deep .d-content p strong{ color:var(--ink); }
+  details.deep .d-content .examples{
+    background:var(--paper-deep);
+    padding:12px 16px;
+    margin-top:10px;
+    border-left:3px solid var(--ochre);
+  }
+  details.deep .d-content .examples .ex-label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:9.5px;
+    letter-spacing:.15em;
+    color:var(--ochre);
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:6px;
+    display:block;
+  }
+  details.deep .d-content .examples p{ font-size:13.5px; margin-bottom:6px; }
+  details.deep .d-content .examples p:last-child{ margin-bottom:0; }
+  details.deep .d-content .insight{
+    background:var(--ink);
+    color:var(--paper);
+    padding:14px 18px;
+    margin-top:14px;
+    font-style:italic;
+    font-family:"Fraunces",serif;
+    font-size:15px;
+    line-height:1.55;
+  }
+  details.deep .d-content .insight strong{ color:var(--vermilion); font-style:normal; font-family:"Noto Serif TC",serif; }
+
+  /* ════════════════════════════════════════════════════
      大數字
      ════════════════════════════════════════════════════ */
   .bignum-wrap{
@@ -1519,6 +1663,121 @@
       <p>在顧客心中佔據獨特的位置。<strong>差異化不是「更好」,而是「不一樣」且「有價值」。</strong></p>
     </div>
   </div>
+
+  <!-- 深化區:展開看每個面向的學術定義 + 實務深化 -->
+  <div class="deepen reveal">
+    <div class="deepen-intro">深入了解 &nbsp;·&nbsp; Deep Dive &nbsp;·&nbsp; 點擊各項展開</div>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">面向 01</span>
+        <span class="d-title">識別與價值主張<span class="en">Brand Identity & Value Proposition</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>學術定義</h4>
+        <p>Aaker (1996, 1998) 將品牌識別定義為「一組獨特、會被消費者連結到品牌的聯想」,由四個視角構成:<strong>產品(屬性、品質、用途)</strong>、<strong>組織(企業文化、創新能力)</strong>、<strong>個性(擬人化特質)</strong>、<strong>符號(視覺識別與傳承)</strong>。</p>
+        <p>價值主張則是「品牌承諾給顧客的功能利益、情感利益、自我表達利益」之總和。其中<strong>情感與自我表達利益</strong>是品牌溢價的關鍵來源 ─ 同樣規格的產品,顧客為何願意多付 30%?答案在這裡。</p>
+
+        <h4>消費品實務案例</h4>
+        <div class="examples">
+          <span class="ex-label">Examples</span>
+          <p><strong>Apple</strong>:功能 = 易用直覺;情感 = 創意自信;自我表達 = 「我屬於 think different」族群。三層利益疊加,構成 30 年溢價基礎。</p>
+          <p><strong>Patagonia</strong>:功能 = 戶外耐用;情感 = 環境責任;自我表達 = 「我是有意識的消費者」。每件外套都附修補保證。</p>
+        </div>
+
+        <h4>應用到大型商用顯示器產業</h4>
+        <p>B2B 採購雖以理性為主,情感利益仍存在 ─ 採購主管的「<strong>不會被責罵</strong>」心理(buy IBM never gets fired)是 Sharp NEC、Sony 能持續溢價的關鍵。</p>
+        <p>友達的「整合解決方案」、群創的「製程深耕」,都是在<strong>組織視角</strong>下重新定義自己:不只是賣面板,而是賣「能力組合」。</p>
+
+        <div class="insight">關鍵洞察:在 B2B 市場,品牌識別必須<strong>同時滿足採購者的理性 KPI 與決策者的職業安全感</strong>。純理性敘事失溫,純情感敘事失重。</div>
+      </div>
+    </details>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">面向 02</span>
+        <span class="d-title">目標客群<span class="en">Target Audience</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>學術定義</h4>
+        <p>目標客群並非「我們想賣給誰」,而是「<strong>哪些人最能從我們的價值主張中獲益</strong>」。Aaker 強調目標必須<strong>具體到可操作</strong>:不是「年輕人」,而是「25–34 歲、月可支配所得 5 萬以上、住在六都、注重生活品味」。</p>
+        <p>明確的目標客群會反向決定四件事:<strong>產品規格的取捨</strong>、<strong>通路選擇</strong>、<strong>定價區間</strong>、<strong>溝通語調</strong>。沒有目標客群,所有行銷資源都是浪費。</p>
+
+        <h4>消費品實務案例</h4>
+        <div class="examples">
+          <span class="ex-label">Examples</span>
+          <p><strong>Rolex</strong>:高淨值且想低調的人。所以不會打 30 秒電視廣告,而是贊助溫布頓、達卡賽車。通路只進入授權精品錶店,確保品牌氛圍一致。</p>
+          <p><strong>Lululemon</strong>:「super-girl 超級女性」(35 歲、年收百萬、有運動習慣)。產品全圍繞瑜伽、跑步、通勤多場景設計;門市配備免費瑜伽課,把「目標客群的生活」做成產品延伸。</p>
+        </div>
+
+        <h4>應用到大型商用顯示器產業</h4>
+        <p>論文中受訪者一致指出:B2B 目標客群必須用「<strong>產業垂直深度</strong>」區隔,不是用公司規模。同樣是 100 人公司,精品零售業跟物流業需要的顯示器完全不同。</p>
+        <p>佳世達「四大情境」就是典型示範:不講「客戶規模」,講「家庭/職人/教育/商用」場景。<strong>場景化思維 = 進階版的目標客群思維</strong>。</p>
+
+        <div class="insight">關鍵洞察:目標客群必須具體到能在便利貼上寫得下名字、職業、痛點 ─ 否則就是空泛的市場區隔。<strong>越具體,品牌越鋒利</strong>。</div>
+      </div>
+    </details>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">面向 03</span>
+        <span class="d-title">主動溝通<span class="en">Active Communication</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>學術定義</h4>
+        <p>主動溝通(Active Communication)是 Aaker 後期 (2010s) 強調的關鍵 ─ 在資訊爆炸時代,被動等待消費者認識你已經失效,品牌必須<strong>主動創造接觸點、主動製造話題、主動參與對話</strong>。</p>
+        <p>它包含三層:<strong>一致性</strong>(所有觸點傳遞同一訊息)、<strong>主動性</strong>(不等媒體曝光,自己創造內容)、<strong>對話性</strong>(把單向廣告變成雙向互動)。</p>
+
+        <h4>消費品實務案例</h4>
+        <div class="examples">
+          <span class="ex-label">Examples</span>
+          <p><strong>Nike "Just Do It"</strong>:1988 年提出,40 年來搭配千百個運動員故事重複表達,從未漂移。三個字成為運動文化詞彙。</p>
+          <p><strong>Red Bull</strong>:不打傳統運動飲料廣告,自己辦極限運動、贊助 F1 車隊、製作 BASE jump 紀錄片。「You don't buy Red Bull, you buy into Red Bull's world」 ─ 內容即廣告,廣告即生活。</p>
+          <p><strong>Patagonia「Don't Buy This Jacket」</strong>:2011 年《紐約時報》黑色星期五廣告反過來叫消費者不要買。看似自殘,實則放大環境立場。</p>
+        </div>
+
+        <h4>應用到大型商用顯示器產業</h4>
+        <p>B2B 市場沒有大眾廣告效益,主動溝通必須走<strong>三條軌道</strong>:</p>
+        <p>① <strong>專業展會</strong>:ISE、InfoComm、SIGGRAPH 上的場域 demo,讓潛在客戶親身體驗</p>
+        <p>② <strong>客製化案例研究</strong>:用「某機場改造前後的旅客動線數據」這類具體故事,而非規格表</p>
+        <p>③ <strong>意見領袖經營</strong>:整合商、系統商、空間設計師 ─ 他們才是真正的影響購買決策者</p>
+
+        <div class="insight">關鍵洞察:在 B2B 市場,「<strong>沒有人讀你的廣告,但每個人都看你的案例</strong>」。內容行銷的精準度,遠比曝光的廣度重要。</div>
+      </div>
+    </details>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">面向 04</span>
+        <span class="d-title">差異化<span class="en">Differentiation</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>學術定義</h4>
+        <p>差異化是 Aaker 四面向的<strong>結果性指標</strong> ─ 前三項是手段,差異化是目的。它測量品牌在顧客心中<strong>是否佔據獨特位置</strong>,且這個位置是<strong>有價值的、難以模仿的、可持續的</strong>。</p>
+        <p>Aaker 特別強調:差異化不是「Better」(更好),而是「Different」(不一樣)。因為「更好」總會被超越,但「不一樣」可以建立品類認知。第一個進入心智的位置往往是不可奪取的。</p>
+
+        <h4>消費品實務案例</h4>
+        <div class="examples">
+          <span class="ex-label">Examples</span>
+          <p><strong>Volvo</strong>:不是「更好的車」,是「最安全的車」。70 年來把安全做成代名詞,即使其他品牌技術已趕上。</p>
+          <p><strong>Liquid Death</strong>:水的市場是紅海,但他們把水做成「龐克搖滾鋁罐」,目標滑板與重金屬族群。同樣的 H₂O,售價是 Evian 的兩倍。</p>
+          <p><strong>Tesla</strong>:不是「更好的汽車」,是「未來移動」 ─ 把產品從「車」重新定義為「移動的軟體平台」。</p>
+        </div>
+
+        <h4>應用到大型商用顯示器產業</h4>
+        <p>本研究受訪者揭示:在這個高度集中的市場(前 5 大佔 55%、Samsung 一家佔 33%),小廠不可能在「更好」這條路上贏。差異化必須走<strong>場域定義</strong>路線:</p>
+        <p>① <strong>Daktronics</strong> 把自己定義為「<strong>戶外大型 LED 唯一專家</strong>」,放棄室內市場</p>
+        <p>② <strong>友達 BHTC 收購</strong> 後,把自己定位成「<strong>車用座艙整合者</strong>」,從面板廠變整合方案商</p>
+        <p>③ <strong>冠捷 TPV</strong> 用四品牌矩陣,放棄「單一品牌做所有事」,每個品牌只負責一個價格帶</p>
+
+        <div class="insight">關鍵洞察:差異化 = <strong>策略性放棄</strong> + <strong>資源集中</strong>。Aaker 第四面向其實在問一個非常痛苦的問題:<strong>你願意不做什麼?</strong></div>
+      </div>
+    </details>
+  </div>
 </section>
 
 <section class="chapter">
@@ -1844,6 +2103,123 @@
       <h3>競爭優勢</h3>
       <p><strong>策略性放棄</strong>(不做什麼)與<strong>資源集中</strong>(極致做好什麼),共同構成競爭優勢。</p>
     </div>
+  </div>
+
+  <!-- 深化區:訪談證據與台灣案例對照 -->
+  <div class="deepen reveal">
+    <div class="deepen-intro">訪談證據 &nbsp;·&nbsp; Interview Evidence &nbsp;·&nbsp; 對照四家台灣公司</div>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">DIM 01</span>
+        <span class="d-title">識別與價值<span class="en">Identity in B2B Display</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>受訪者一致發現</h4>
+        <p>四位主管(A/B/C/D)在訪談中都提到:B2B 顯示器市場的品牌識別,<strong>不能照搬 B2C 邏輯</strong>。Subject B 直接說:「我們不是在賣面板,我們在賣『系統運作穩定 5 年的承諾』。」</p>
+        <p>價值主張必須建立在<strong>三個可驗證的指標</strong>:① 平均故障時間(MTBF)、② 服務據點密度、③ 軟體生態相容性。客戶下單前會列 spec sheet 比對,情感訴求只能輔助、不能主導。</p>
+
+        <h4>台灣公司實際做法</h4>
+        <div class="examples">
+          <span class="ex-label">Case Evidence</span>
+          <p><strong>友達</strong>:把「<strong>整合解決方案提供者</strong>」當識別核心。BHTC 收購後,品牌訊息聚焦在「我們不只給你面板,還給你車用座艙的完整工程能力」。</p>
+          <p><strong>群創</strong>:選擇相反路徑 ─ 「<strong>面板製程的最深專家</strong>」。FOPLP 技術突破成為品牌支柱,訊息往「<strong>越深越強</strong>」走。</p>
+          <p><strong>佳世達 BenQ</strong>:用「<strong>大艦隊整合能力</strong>」(品牌組織視角)+「<strong>四大情境理解</strong>」(品牌符號視角)雙軸定位。</p>
+        </div>
+
+        <h4>跟 Aaker 框架的對照</h4>
+        <p>受訪者證實了 Aaker 四視角(產品/組織/個性/符號)中,B2B 市場特別倚重「<strong>組織視角</strong>」(企業能力、誠信)與「<strong>產品視角</strong>」(規格、可靠度)。「個性」與「符號」較弱,但<strong>不能沒有</strong>。</p>
+
+        <div class="insight">關鍵洞察:B2B 品牌的「可靠」是 <strong>table stake</strong>(入場券),不是差異化。<strong>真正的識別來自「為什麼選你的可靠,不選別人的可靠」</strong>。</div>
+      </div>
+    </details>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">DIM 02</span>
+        <span class="d-title">目標客群<span class="en">Vertical-Specific Segmentation</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>受訪者一致發現</h4>
+        <p>四位受訪者都拒絕「公司規模」這種傳統 B2B 區隔法。Subject C 說:「<strong>同樣 100 人的零售商跟 100 人的物流公司,需要的顯示器完全不同。我們不能用人數定義客群。</strong>」</p>
+        <p>取而代之的是「<strong>產業垂直 × 使用場景</strong>」二維區隔。每個垂直 + 場景組合,對應不同的:技術規格、安裝環境、服務頻率、預算週期、決策鏈長度。</p>
+
+        <h4>四大典型垂直市場</h4>
+        <div class="examples">
+          <span class="ex-label">Verticals × Scenarios</span>
+          <p><strong>① 零售 Retail</strong>:強調色彩準確、互動觸控、外形美學;決策者是品牌主或視覺總監,在乎「美」勝過「規格」</p>
+          <p><strong>② 教育 Education</strong>:強調耐用性、軟體開放、抗反光;預算受政府週期影響,決策慢但採購量大</p>
+          <p><strong>③ 企業 Corporate</strong>:強調會議系統整合、安全認證、IT 友善;決策者是 CIO/設施經理,在乎「整合」勝過「炫技」</p>
+          <p><strong>④ 運輸 Transit</strong>:強調 24×7 運轉、抗振動、戶外可視;客戶是政府或大型運輸公司,認證門檻極高</p>
+        </div>
+
+        <h4>佳世達「四大情境」的對應</h4>
+        <p>佳世達的 <strong>家庭/職人/教育/商用</strong> 四情境,其實就是這種「場景化思維」的典型實踐:</p>
+        <p>每個情境對應一套產品線、一組通路、一種溝通語調。<strong>同一家公司,服務四種完全不同的「目標客群」</strong>。這正是 Aaker 第二面向「具體到可操作」的最佳示範。</p>
+
+        <div class="insight">關鍵洞察:在 B2B 商用顯示器,<strong>目標客群 = 產業垂直 × 使用場景</strong>。少了任何一個維度,行銷資源就會分散。</div>
+      </div>
+    </details>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">DIM 03</span>
+        <span class="d-title">主動溝通<span class="en">Active Communication in B2B</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>受訪者一致發現</h4>
+        <p>Subject D(B2B 客戶第一線)直接說:「<strong>我們不做大眾廣告 ── 砸 1,000 萬投電視,不如砸 100 萬辦一場展會 demo。</strong>」</p>
+        <p>原因:商用顯示器的決策鏈通常 3–7 人,從建築師、設計師、整合商、IT 主管、財務、最終使用者都會參與。<strong>每一個決策角色都需要不同的溝通內容</strong>,所以大眾廣告效率極低。</p>
+
+        <h4>三條 B2B 主動溝通主軸</h4>
+        <div class="examples">
+          <span class="ex-label">B2B Channels</span>
+          <p><strong>① 專業展會 Trade Shows</strong>:ISE(歐洲整合展)、InfoComm(美國)、Touch Taiwan ── 不是賣產品,是讓決策者「親手摸」</p>
+          <p><strong>② 客製化案例研究 Case Studies</strong>:用「某機場改造後旅客動線縮短 23%」這類具體數據,而不是 spec 比較表</p>
+          <p><strong>③ 意見領袖經營 KOL Cultivation</strong>:整合商、系統商、空間設計師 ── 他們才是真正影響採購決策的人</p>
+        </div>
+
+        <h4>友達 vs 群創的不同溝通策略</h4>
+        <p><strong>友達</strong>:大量參與國際展會,主動發布「整合解決方案」白皮書,跟車廠合作 demo car。<strong>主動性 = 高</strong>。</p>
+        <p><strong>群創</strong>:更多透過產業協會、論文發表、技術研討會。<strong>主動性 = 低但深度高</strong>。</p>
+        <p>這兩者沒有對錯,只有<strong>與目標客群偏好接收訊息的方式是否匹配</strong>。友達服務的車廠主管偏好實體 demo,群創服務的技術主管偏好白皮書。</p>
+
+        <div class="insight">關鍵洞察:B2B 主動溝通的成功公式是 <strong>「對的內容 × 對的場域 × 對的人」</strong>。三項缺一,廣告預算就是燒錢。</div>
+      </div>
+    </details>
+
+    <details class="deep">
+      <summary>
+        <span class="d-num">DIM 04</span>
+        <span class="d-title">競爭優勢<span class="en">Strategic Abandonment & Focus</span></span>
+        <span class="d-icon">+</span>
+      </summary>
+      <div class="d-content">
+        <h4>受訪者一致發現</h4>
+        <p>這是論文最強的訪談發現。Subject A 一語道破:「<strong>大公司贏在資源,小公司贏在放棄。</strong>」</p>
+        <p>四位受訪者都同意,在 Samsung 一家佔 33%、前 5 大佔 55% 的市場,後進者唯一勝算是<strong>策略性放棄 + 資源集中</strong>:</p>
+        <p>① <strong>策略性放棄</strong>:明確界定「我們不做的事」 ─ 不追逐所有客戶、不追逐所有規格、不追逐短期營收</p>
+        <p>② <strong>資源集中</strong>:把放棄省下的人力、研發、資金,集中投入到一個能贏的細分市場</p>
+
+        <h4>台灣四公司的「策略性放棄」清單</h4>
+        <div class="examples">
+          <span class="ex-label">Strategic Abandonment</span>
+          <p><strong>友達</strong>:放棄「面板代工大宗訂單」,集中車用 + Micro LED 高毛利市場。短期營收承壓,長期建立技術門檻。</p>
+          <p><strong>群創</strong>:放棄「品牌端的廣度競爭」,集中 FOPLP 製程深耕。即使 2023 年營收衰退 5.4%,仍持續投入 R&D。</p>
+          <p><strong>佳世達</strong>:放棄「自有單一品牌全包」模式,改用大艦隊整合 5 家子公司。每家子公司負責一塊,集團整體不重疊。</p>
+          <p><strong>冠捷</strong>:放棄「30 個 OEM 客戶」,集中經營「自有 4 品牌矩陣」。客戶數驟減,但毛利與品牌資產大幅提升。</p>
+        </div>
+
+        <h4>為什麼這是 Aaker 第四面向的核心</h4>
+        <p>差異化的本質不是「我們能做什麼」,而是「<strong>我們選擇不做什麼</strong>」。前者人人能說,後者只有具備策略勇氣的領導者才能執行。</p>
+        <p>論文指出:四家公司的成功,共通點不在於選了哪個賽道,而在於<strong>都明確界定了自己不打哪場仗</strong>。這呼應了論文 RQ4(協同),也驗證了 Aaker 對「Different, not Better」的堅持。</p>
+
+        <div class="insight">關鍵洞察:差異化是<strong>痛苦的選擇</strong>,不是聰明的口號。「策略性放棄 + 資源集中」是<strong>所有四面向的最終匯流點</strong>,也是論文最重要的實務貢獻。</div>
+      </div>
+    </details>
   </div>
 </section>
 
