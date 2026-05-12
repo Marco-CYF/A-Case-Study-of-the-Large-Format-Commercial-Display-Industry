@@ -1,0 +1,2172 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>品牌定位與產品策略之研究 — 卓彥夆 報告</title>
+<meta name="description" content="銘傳大學蔡義清、施柏仲、黃新福 2025 年研究論文 — 工商組碩專一 114098507 卓彥夆 報告" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f4ede0;
+    --paper-deep:#ebe1cf;
+    --paper-light:#faf5e8;
+    --ink:#1a1612;
+    --ink-soft:#3d342a;
+    --vermilion:#c3382a;
+    --vermilion-deep:#922617;
+    --vermilion-glow:rgba(195,56,42,.45);
+    --moss:#3f5641;
+    --ochre:#b6822c;
+    --rule:rgba(26,22,18,.18);
+    --rule-thick:rgba(26,22,18,.45);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    /* 統一字型:全部用同一個 stack,中英文比例由瀏覽器自動處理 */
+    font-family:"Noto Serif TC","Songti TC","Songti SC",serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-feature-settings:"kern","liga";
+    -webkit-font-smoothing:antialiased;
+    -webkit-text-size-adjust:100%;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  /* 紙張顆粒紋理 */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.4 0' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+    opacity:.10;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+    z-index:9999;
+  }
+
+  /* ════════════════════════════════════════════════════
+     字型統一規則
+     中文用 Noto Serif TC,英文用 Fraunces,等寬數字用 JetBrains Mono
+     所有 title 的 line-height、letter-spacing 統一管理
+     ════════════════════════════════════════════════════ */
+  .en, em.en, .quote-en{
+    font-family:"Fraunces",Georgia,serif;
+    font-style:italic;
+    font-weight:400;
+  }
+  .mono{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  /* ════════════════════════════════════════════════════
+     頂部 NAV
+     ════════════════════════════════════════════════════ */
+  nav.top{
+    position:fixed; top:0; left:0; right:0; height:56px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 32px;
+    background:rgba(244,237,224,.92);
+    backdrop-filter:blur(12px) saturate(140%);
+    -webkit-backdrop-filter:blur(12px) saturate(140%);
+    border-bottom:1px solid var(--rule);
+    z-index:100;
+  }
+  nav.top .l{ display:flex; gap:18px; align-items:center; }
+  nav.top .seal{
+    width:32px; height:32px;
+    background:var(--vermilion);
+    color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Noto Serif TC",serif;
+    font-weight:900; font-size:18px;
+    transform:rotate(-3deg);
+    box-shadow:2px 2px 0 var(--vermilion-deep);
+    flex-shrink:0;
+  }
+  nav.top .ttl{
+    font-family:"Noto Serif TC",serif;
+    font-size:14px; font-weight:600;
+    color:var(--ink);
+    line-height:1.2;
+  }
+  nav.top .ttl .en{
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-left:8px;
+  }
+  nav.top .navlinks{
+    display:flex; gap:4px;
+  }
+  nav.top .navlinks a{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    text-decoration:none;
+    padding:6px 12px;
+    transition:color .2s, background .2s;
+    border-radius:2px;
+  }
+  nav.top .navlinks a:hover{
+    color:var(--vermilion);
+    background:var(--paper-deep);
+  }
+  nav.top .navlinks a.active{
+    color:var(--vermilion);
+    font-weight:700;
+  }
+  /* 進度條 */
+  .progressbar{
+    position:fixed; top:56px; left:0; right:0; height:2px;
+    background:var(--rule);
+    z-index:99;
+  }
+  .progressbar::after{
+    content:""; position:absolute; top:0; left:0; height:100%;
+    background:var(--vermilion);
+    width:var(--p,0%);
+    transition:width .2s ease;
+  }
+
+  /* ════════════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════════════ */
+  .hero{
+    position:relative; min-height:100vh;
+    display:flex; align-items:center;
+    padding:120px 64px 80px;
+    overflow:hidden;
+  }
+  .hero canvas{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    z-index:1;
+    opacity:.55;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 70% 50%, transparent 0%, var(--paper) 75%);
+    z-index:2;
+  }
+  .hero .inner{
+    position:relative; z-index:3;
+    max-width:1400px; margin:0 auto; width:100%;
+  }
+  .hero .meta{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    line-height:1.8;
+    margin-bottom:36px;
+  }
+  /* H1 — 用 line-height 1.05 確保中文方塊不會被擠 */
+  .hero h1{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:clamp(48px, 8.5vw, 132px);
+    line-height:1.05;
+    letter-spacing:.02em;
+    color:var(--ink);
+    margin-bottom:20px;
+  }
+  .hero h1 .em-r{
+    color:var(--vermilion);
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:300;
+    letter-spacing:0;
+  }
+  .hero .sub-en{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:clamp(18px, 2.2vw, 26px);
+    color:var(--vermilion);
+    line-height:1.3;
+    max-width:780px;
+    margin-bottom:36px;
+  }
+  /* 報告人區塊 */
+  .presenter-card{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    padding:14px 22px;
+    margin-bottom:48px;
+    position:relative;
+  }
+  .presenter-card .lbl{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.2em;
+    color:var(--vermilion);
+    text-transform:uppercase;
+    margin-bottom:6px;
+    font-weight:700;
+  }
+  .presenter-card .info{
+    font-family:"Noto Serif TC",serif;
+    font-size:16px;
+    line-height:1.5;
+  }
+  .presenter-card .info .name{
+    font-size:22px;
+    font-weight:700;
+    margin-left:8px;
+  }
+
+  .hero .authors{
+    border-top:2px solid var(--ink);
+    padding-top:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .hero .authors .name{
+    font-family:"Noto Serif TC",serif;
+    font-size:16px;
+    color:var(--ink);
+  }
+  .hero .authors .pub{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    text-align:right;
+    line-height:1.6;
+  }
+
+  /* 大印章 — 品牌 */
+  .seal-big{
+    position:absolute;
+    top:120px; right:64px;
+    width:130px; height:130px;
+    background:var(--vermilion);
+    color:var(--paper);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-family:"Noto Serif TC",serif;
+    font-weight:900;
+    font-size:50px;
+    transform:rotate(-4deg);
+    box-shadow:6px 6px 0 var(--vermilion-deep);
+    z-index:4;
+    line-height:1.05;
+    letter-spacing:.04em;
+    padding:6px 0;
+  }
+  .seal-big span{
+    display:block;
+  }
+
+  /* 向下滾動提示 */
+  .scrolldown{
+    position:absolute; bottom:28px; left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.2em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    animation:bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce{
+    0%,100%{ transform:translateX(-50%) translateY(0); opacity:.6; }
+    50%{ transform:translateX(-50%) translateY(8px); opacity:1; }
+  }
+
+  /* ════════════════════════════════════════════════════
+     SECTIONS 通用
+     ════════════════════════════════════════════════════ */
+  section.chapter{
+    padding:96px 64px;
+    position:relative;
+    max-width:1400px;
+    margin:0 auto;
+  }
+  section.chapter:not(:first-child){
+    border-top:1px solid var(--rule);
+  }
+  .part-label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--vermilion);
+    margin-bottom:14px;
+    display:inline-block;
+    padding-top:6px;
+    border-top:2px solid var(--vermilion);
+    font-weight:700;
+  }
+  /* 統一所有 section title:line-height 1.1,中英文混排不擠壓 */
+  h2.section-title{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:clamp(36px, 4.8vw, 64px);
+    line-height:1.15;
+    letter-spacing:.02em;
+    color:var(--ink);
+    margin-bottom:14px;
+  }
+  h2.section-title em.em-r{
+    color:var(--vermilion);
+    font-style:normal;
+    font-weight:700;
+    font-family:"Noto Serif TC",serif;
+  }
+  h2.section-title em.em-it{
+    color:var(--vermilion);
+    font-style:italic;
+    font-family:"Fraunces",serif;
+    font-weight:300;
+    letter-spacing:0;
+  }
+  .section-en{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--ink-soft);
+    margin-bottom:40px;
+  }
+  h3{
+    font-family:"Noto Serif TC",serif;
+    font-weight:600;
+    font-size:20px;
+    margin-bottom:10px;
+    color:var(--ink);
+    line-height:1.35;
+    letter-spacing:.01em;
+  }
+  h3 .en{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:.7em;
+    color:var(--vermilion);
+    margin-left:10px;
+  }
+  p{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .lede{
+    font-size:19px;
+    line-height:1.6;
+    color:var(--ink);
+    max-width:780px;
+    margin-bottom:36px;
+    line-height:1.65;
+  }
+
+  /* ════════════════════════════════════════════════════
+     卡片 (對應 PPT 卡片樣式)
+     ════════════════════════════════════════════════════ */
+  .cards{
+    display:grid;
+    gap:24px;
+    margin-top:40px;
+  }
+  .cards.cols-2{ grid-template-columns:repeat(2, 1fr); }
+  .cards.cols-3{ grid-template-columns:repeat(3, 1fr); }
+  .cards.cols-4{ grid-template-columns:repeat(4, 1fr); }
+  @media (max-width:900px){
+    .cards.cols-3, .cards.cols-4{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:600px){
+    .cards.cols-2, .cards.cols-3, .cards.cols-4{ grid-template-columns:1fr; }
+  }
+
+  /* 主卡 — 深米色背景 + 黑色頂線 + 朱紅標籤 */
+  .card{
+    background:var(--paper-deep);
+    padding:28px 22px 26px;
+    border-top:3px solid var(--ink);
+    position:relative;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(26,22,18,.10);
+  }
+  .card.accent{ border-top-color:var(--vermilion); }
+  .card .tag{
+    position:absolute;
+    top:-10px; right:16px;
+    background:var(--vermilion);
+    color:var(--paper);
+    font-family:"JetBrains Mono",monospace;
+    font-size:9.5px;
+    padding:4px 9px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .card.dim{ opacity:.5; }
+  .card.dim .tag{ background:var(--rule-thick); }
+
+  /* 簡約卡 — 左側朱紅短條 */
+  .card-light{
+    border-left:3px solid var(--vermilion);
+    padding:6px 0 8px 24px;
+  }
+  .card-light .label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--vermilion);
+    margin-bottom:8px;
+    display:block;
+    font-weight:700;
+  }
+
+  /* GAP 卡 — 對應 PPT slide 7,小標籤是黑色不是朱紅 */
+  .gap-card{
+    background:transparent;
+    padding:0;
+  }
+  .gap-card .gnum{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.15em;
+    color:var(--ink);
+    background:transparent;
+    padding:3px 8px;
+    border:1px solid var(--ink);
+    display:inline-block;
+    margin-bottom:14px;
+    font-weight:700;
+    text-transform:uppercase;
+  }
+
+  /* ════════════════════════════════════════════════════
+     受訪主管卡 — 帶 SVG 符號
+     ════════════════════════════════════════════════════ */
+  .subject-card{
+    background:var(--paper-deep);
+    padding:20px;
+    border-top:3px solid var(--vermilion);
+    position:relative;
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+  }
+  .subject-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(26,22,18,.10);
+  }
+  .subject-card:hover .subject-icon{
+    transform:scale(1.05) rotate(-2deg);
+  }
+  .subject-icon{
+    width:64px;
+    height:64px;
+    flex-shrink:0;
+    background:var(--paper);
+    border:1px solid var(--rule-thick);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .subject-icon svg{
+    width:100%;
+    height:100%;
+  }
+  .subject-body{
+    flex:1;
+    min-width:0;
+  }
+  .subject-body .label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--vermilion);
+    margin-bottom:8px;
+    display:block;
+    font-weight:700;
+  }
+  .subject-body .role{
+    font-family:"Noto Serif TC",serif;
+    font-size:17px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:6px;
+    line-height:1.3;
+  }
+  .subject-body .desc{
+    font-size:13px;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+
+  /* ════════════════════════════════════════════════════
+     大數字
+     ════════════════════════════════════════════════════ */
+  .bignum-wrap{
+    display:flex; align-items:flex-start;
+    gap:18px;
+    margin:36px 0 20px;
+  }
+  .bignum{
+    font-family:"Fraunces",serif;
+    font-weight:300;
+    font-size:clamp(110px, 16vw, 240px);
+    line-height:.9;
+    letter-spacing:-.04em;
+    color:var(--ink);
+  }
+  .bignum .unit{
+    color:var(--vermilion);
+    font-family:"JetBrains Mono",monospace;
+    font-size:.25em;
+    margin-left:10px;
+    letter-spacing:0;
+    vertical-align:top;
+    line-height:1;
+  }
+  .bignum-prefix{
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--vermilion);
+    font-weight:700;
+    margin-top:22px;
+  }
+  .bignum-source{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    margin-top:8px;
+  }
+
+  /* ════════════════════════════════════════════════════
+     條形圖
+     ════════════════════════════════════════════════════ */
+  .barchart{ margin-top:24px; }
+  .bar{
+    display:grid;
+    grid-template-columns:170px 1fr 70px;
+    gap:16px;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px dashed var(--rule);
+  }
+  .bar .name{
+    font-size:14px;
+    color:var(--ink);
+    font-family:"Noto Serif TC",serif;
+    line-height:1.3;
+  }
+  .bar .name .en{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-left:6px;
+  }
+  .bar .track{
+    display:block;
+    height:16px;
+    background:var(--paper-deep);
+    position:relative;
+    overflow:hidden;
+  }
+  .bar .fill{
+    display:block;
+    height:100%;
+    background:var(--vermilion);
+    width:0;
+    transition:width 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .bar .pct{
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+    text-align:right;
+    color:var(--ink);
+    font-weight:700;
+  }
+
+  /* ════════════════════════════════════════════════════
+     雙引擎與 黑色引文塊
+     ════════════════════════════════════════════════════ */
+  .twincol{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:56px;
+    margin-top:40px;
+    align-items:start;
+  }
+  @media (max-width:900px){ .twincol{ grid-template-columns:1fr; gap:32px; } }
+  .engine{
+    margin-bottom:28px;
+    padding-left:22px;
+    border-left:3px solid var(--vermilion);
+  }
+  .engine .lbl{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    color:var(--vermilion);
+    letter-spacing:.15em;
+    font-weight:700;
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+  .engine h3{ font-size:28px; margin-bottom:10px; }
+
+  .black-quote{
+    background:var(--ink);
+    color:var(--paper);
+    padding:48px 36px;
+    position:relative;
+    overflow:hidden;
+  }
+  .black-quote::after{
+    content:"";
+    position:absolute;
+    top:-20px; right:-20px;
+    width:140px; height:140px;
+    background:radial-gradient(circle, var(--vermilion-glow) 0%, transparent 70%);
+  }
+  .black-quote .quote{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:clamp(24px, 2.8vw, 34px);
+    line-height:1.35;
+    font-weight:300;
+    position:relative; z-index:1;
+  }
+  .black-quote .quote .hl{
+    color:var(--vermilion);
+    font-weight:700;
+    font-style:normal;
+    font-family:"Noto Serif TC",serif;
+  }
+  .black-quote .attrib{
+    margin-top:22px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.15em;
+    color:var(--paper-deep);
+    text-align:right;
+    text-transform:uppercase;
+    position:relative; z-index:1;
+  }
+
+  /* ════════════════════════════════════════════════════
+     協同飛輪 SVG
+     ════════════════════════════════════════════════════ */
+  .flywheel-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    margin-top:32px;
+    align-items:center;
+  }
+  @media (max-width:900px){ .flywheel-wrap{ grid-template-columns:1fr; } }
+  .flywheel{
+    width:100%;
+    max-width:440px;
+    aspect-ratio:1/1;
+    margin:0 auto;
+  }
+  .flywheel .ring{
+    transform-origin:center;
+    animation:spin 40s linear infinite;
+  }
+  @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
+  .flywheel .ring.rev{ animation:spin 50s linear infinite reverse; }
+
+  /* ════════════════════════════════════════════════════
+     公司案例 — Tab 切換
+     ════════════════════════════════════════════════════ */
+  .case-tabs{
+    display:flex;
+    gap:0;
+    border-bottom:2px solid var(--ink);
+    margin-bottom:32px;
+    flex-wrap:wrap;
+  }
+  .case-tabs button{
+    background:transparent;
+    border:none;
+    padding:14px 20px;
+    cursor:pointer;
+    font-family:"Noto Serif TC",serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink-soft);
+    border-bottom:3px solid transparent;
+    margin-bottom:-2px;
+    transition:color .2s, border-color .2s;
+    line-height:1.3;
+  }
+  .case-tabs button:hover{ color:var(--vermilion); }
+  .case-tabs button.active{
+    color:var(--vermilion);
+    border-bottom-color:var(--vermilion);
+  }
+  .case-tabs button .en{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:12px;
+    margin-left:6px;
+    font-weight:400;
+  }
+  .case-panel{ display:none; }
+  .case-panel.active{ display:block; animation:fadeUp .5s cubic-bezier(.2,.7,.2,1); }
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .co-card{
+    border-left:4px solid var(--vermilion);
+    padding-left:26px;
+  }
+  .co-ticker{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;
+    color:var(--vermilion);
+    letter-spacing:.12em;
+    font-weight:700;
+    text-transform:uppercase;
+  }
+  .co-name{
+    font-family:"Noto Serif TC",serif;
+    font-size:44px;
+    font-weight:700;
+    line-height:1.05;
+    margin:6px 0;
+    letter-spacing:.02em;
+  }
+  .co-name .en{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:.5em;
+    color:var(--ink-soft);
+    margin-left:14px;
+    letter-spacing:0;
+  }
+  .co-rev{
+    font-family:"Fraunces",serif;
+    font-size:30px;
+    color:var(--ink);
+    margin:12px 0 4px;
+  }
+  .co-rev .yoy{
+    font-family:"JetBrains Mono",monospace;
+    font-size:14px;
+    margin-left:10px;
+    font-weight:700;
+  }
+  .co-rev .yoy.up{ color:var(--moss); }
+  .co-rev .yoy.dn{ color:var(--vermilion); }
+  .co-rev-label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;
+    color:var(--ink-soft);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .co-blurb{
+    margin-top:18px;
+    line-height:1.7;
+    color:var(--ink-soft);
+  }
+  .co-blurb strong{ color:var(--ink); }
+  .co-blurb ul{ list-style:none; padding:0; margin-top:12px; }
+  .co-blurb li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:8px;
+    font-size:14px;
+  }
+  .co-blurb li::before{
+    content:"▸";
+    position:absolute;
+    left:0;
+    color:var(--vermilion);
+    font-weight:700;
+  }
+
+  /* Big Fleet 成員 */
+  .fleet{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:8px;
+    margin-top:20px;
+  }
+  @media (max-width:600px){ .fleet{ grid-template-columns:repeat(3, 1fr); } }
+  .fleet-member{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    padding:14px 6px;
+    font-family:"Noto Serif TC",serif;
+    font-size:15px;
+    font-weight:700;
+    transition:background .25s, color .25s;
+  }
+  .fleet-member:hover{
+    background:var(--vermilion);
+  }
+
+  /* 情境卡 */
+  .scenarios{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:14px;
+    margin-top:18px;
+  }
+  .scenario{
+    border-left:3px solid var(--vermilion);
+    padding:10px 0 10px 16px;
+  }
+  .scenario.moss{ border-color:var(--moss); }
+  .scenario.ochre{ border-color:var(--ochre); }
+  .scenario.ink{ border-color:var(--ink); }
+  .scenario strong{ display:block; font-size:15px; color:var(--ink); }
+  .scenario span{ font-size:12px; color:var(--ink-soft); }
+
+  /* TPV 30→1 */
+  .tpv-hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:40px 32px;
+    position:relative; overflow:hidden;
+    margin-top:20px;
+  }
+  .tpv-hero::after{
+    content:"";
+    position:absolute;
+    top:-40px; right:-40px;
+    width:180px; height:180px;
+    background:radial-gradient(circle, var(--vermilion-glow) 0%, transparent 70%);
+  }
+  .tpv-hero .label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--paper-deep);
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:10px;
+    position:relative; z-index:1;
+  }
+  .tpv-hero .arrow{
+    font-family:"Fraunces",serif;
+    font-size:clamp(80px, 12vw, 140px);
+    font-weight:300;
+    line-height:.95;
+    position:relative; z-index:1;
+  }
+  .tpv-hero .arrow .arr{ color:var(--vermilion); font-style:italic; }
+  .tpv-hero .desc{
+    margin-top:18px;
+    color:var(--paper-deep);
+    font-size:14px;
+    line-height:1.7;
+    position:relative; z-index:1;
+  }
+  .tpv-hero .desc strong{ color:var(--paper); font-weight:700; }
+  .tpv-hero .desc em{ color:var(--vermilion); font-style:normal; font-weight:700; font-family:"Noto Serif TC",serif; }
+  .tpv-hero .footnote{
+    margin-top:18px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.15);
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.1em;
+    color:var(--paper-deep);
+    position:relative; z-index:1;
+  }
+
+  /* TPV 四品牌 */
+  .brand-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:14px;
+    margin-top:20px;
+  }
+  .brand-cell{
+    background:var(--paper-deep);
+    padding:16px;
+    border-left:3px solid var(--vermilion);
+  }
+  .brand-cell .lbl{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    color:var(--vermilion);
+    letter-spacing:.12em;
+    font-weight:700;
+    text-transform:uppercase;
+  }
+  .brand-cell .nm{
+    font-family:"Fraunces",serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--ink);
+    margin-top:4px;
+  }
+  .brand-cell .ds{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+
+  /* ════════════════════════════════════════════════════
+     延伸資料
+     ════════════════════════════════════════════════════ */
+  .ref-list{ margin-top:32px; }
+  .ref-item{
+    display:grid;
+    grid-template-columns:90px 1fr auto;
+    gap:20px;
+    padding:20px 0;
+    border-bottom:1px solid var(--rule);
+    align-items:start;
+    transition:padding-left .3s;
+  }
+  .ref-item:hover{ padding-left:8px; }
+  .ref-item .idx{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;
+    color:var(--vermilion);
+    letter-spacing:.1em;
+    font-weight:700;
+  }
+  .ref-item .content{
+    font-size:14.5px;
+    line-height:1.55;
+  }
+  .ref-item .content .title{
+    font-family:"Noto Serif TC",serif;
+    font-weight:600;
+    color:var(--ink);
+    display:block;
+    margin-bottom:4px;
+    line-height:1.45;
+  }
+  .ref-item .content .meta{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .ref-item .badge{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.1em;
+    padding:3px 8px;
+    border:1px solid var(--rule-thick);
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    align-self:start;
+    white-space:nowrap;
+  }
+  .ref-item .badge.news{
+    background:var(--vermilion);
+    color:var(--paper);
+    border-color:var(--vermilion);
+  }
+  .ref-item .badge.book{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+
+  /* 思考引言 */
+  .pullquote{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:clamp(22px, 2.8vw, 30px);
+    line-height:1.45;
+    color:var(--ink);
+    text-align:center;
+    max-width:840px;
+    margin:48px auto;
+    padding:32px 0;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+  .pullquote .vermilion{ color:var(--vermilion); font-weight:700; font-style:normal; font-family:"Noto Serif TC",serif; }
+
+  /* 章節分隔頁 */
+  .chapter-divider{
+    padding:96px 64px 56px;
+    text-align:left;
+    border-top:none !important;
+    max-width:1400px;
+    margin:0 auto;
+  }
+  .chapter-divider .num{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(140px, 20vw, 280px);
+    line-height:.85;
+    color:var(--vermilion);
+    letter-spacing:-.04em;
+    margin-bottom:-16px;
+  }
+  .chapter-divider h2.title{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:clamp(42px, 5.4vw, 76px);
+    color:var(--ink);
+    margin-bottom:12px;
+    letter-spacing:.01em;
+    line-height:1.1;
+  }
+  .chapter-divider .sub{
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ════════════════════════════════════════════════════
+     FOOTER — Any Questions ?(單行,對應 PPT slide 26)
+     ════════════════════════════════════════════════════ */
+  footer{
+    background:var(--ink);
+    color:var(--paper);
+    padding:72px 64px 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  footer .foot-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-bottom:24px;
+  }
+  footer .presenter-tag{
+    background:var(--vermilion);
+    color:var(--paper);
+    padding:14px 22px;
+    position:relative;
+    box-shadow:4px 4px 0 var(--vermilion-deep);
+    transform:rotate(-2deg);
+    flex-shrink:0;
+  }
+  footer .presenter-tag .lbl{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    color:var(--paper);
+    opacity:.85;
+    text-transform:uppercase;
+    margin-bottom:6px;
+    font-weight:700;
+  }
+  footer .presenter-tag .info{
+    font-family:"Noto Serif TC",serif;
+    font-size:14px;
+    line-height:1.5;
+    color:var(--paper);
+  }
+  footer .presenter-tag .info .id{
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+    letter-spacing:.05em;
+  }
+  footer .presenter-tag .info .name{
+    display:block;
+    font-size:22px;
+    font-weight:700;
+    margin-top:4px;
+    letter-spacing:.04em;
+  }
+  @media (max-width:600px){
+    footer .presenter-tag{ transform:rotate(0); }
+  }
+  footer .fin-mark{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    color:var(--vermilion);
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    border-top:2px solid var(--vermilion);
+    padding-top:8px;
+    display:inline-block;
+    margin-bottom:24px;
+    font-weight:700;
+  }
+  /* 「Any Questions ?」單行,? 朱紅 */
+  footer .fbignum{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(60px, 9vw, 130px);
+    line-height:1;
+    color:var(--paper);
+    letter-spacing:-.02em;
+    margin-bottom:24px;
+  }
+  footer .fbignum em{
+    color:var(--vermilion);
+    font-style:normal;
+    font-weight:700;
+    font-family:"Noto Serif TC",serif;
+    letter-spacing:0;
+  }
+  footer .fcols{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:48px;
+    margin-top:56px;
+    padding-top:32px;
+    border-top:1px solid rgba(255,255,255,.15);
+  }
+  @media (max-width:800px){ footer .fcols{ grid-template-columns:1fr; gap:32px; } }
+  footer .fcol .lbl{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    color:var(--vermilion);
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  footer .fcol p,
+  footer .fcol .cite{
+    color:var(--paper-deep);
+    font-size:14px;
+    line-height:1.7;
+  }
+  footer .fcol .cite{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+  }
+  footer .fcol .cite strong{
+    color:var(--paper);
+    font-weight:700;
+  }
+  footer .credits{
+    margin-top:48px;
+    padding-top:24px;
+    border-top:1px solid rgba(255,255,255,.1);
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+    letter-spacing:.12em;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  footer .credits .v{ color:var(--vermilion); }
+
+  /* Reveal animations */
+  .reveal{
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .reveal.d1{ transition-delay:.05s; }
+  .reveal.d2{ transition-delay:.15s; }
+  .reveal.d3{ transition-delay:.25s; }
+  .reveal.d4{ transition-delay:.35s; }
+  .reveal.d5{ transition-delay:.45s; }
+
+  /* mobile padding */
+  @media (max-width:700px){
+    .hero{ padding:96px 24px 80px; }
+    section.chapter{ padding:64px 24px; }
+    .chapter-divider{ padding:60px 24px; }
+    nav.top{ padding:0 16px; }
+    nav.top .ttl .en{ display:none; }
+    nav.top .navlinks{ display:none; }
+    .seal-big{ top:90px; right:24px; width:84px; height:84px; font-size:32px; }
+    footer{ padding:60px 24px 36px; }
+    .bar{ grid-template-columns:110px 1fr 50px; gap:10px; }
+    .bar .name{ font-size:13px; }
+    .presenter-card{ display:block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP NAV ═══════════════ -->
+<nav class="top">
+  <div class="l">
+    <div class="seal">卓</div>
+    <div class="ttl">品牌定位與產品策略<span class="en">Brand Positioning &amp; Product Strategy</span></div>
+  </div>
+  <div class="navlinks">
+    <a href="#part1" data-target="part1">§1 重要</a>
+    <a href="#part2" data-target="part2">§2 論文</a>
+    <a href="#part3" data-target="part3">§3 理論</a>
+    <a href="#part4" data-target="part4">§4 市場</a>
+    <a href="#part5" data-target="part5">§5 案例</a>
+    <a href="#part6" data-target="part6">§6 結論</a>
+    <a href="#refs" data-target="refs">延伸閱讀</a>
+  </div>
+</nav>
+<div class="progressbar" id="prog"></div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero">
+  <canvas id="ledcanvas"></canvas>
+  <div class="seal-big"><span>品</span><span>牌</span></div>
+  <div class="inner">
+    <div class="meta">
+      Management Information Computing &nbsp;·&nbsp; 2025 Vol. 14 &nbsp;·&nbsp; SP_14.0011<br/>
+      銘傳大學 &nbsp;·&nbsp; Ming Chuan University<br/>
+      DOI 10.6285/MIC.202507/SP_14.0011
+    </div>
+    <h1>品牌定位與<br/><span class="em-r">產品</span>策略之研究</h1>
+    <div class="sub-en">以大型商用顯示器產業為例 ─ A Case Study of the Large Format Commercial Display Industry</div>
+
+    <!-- 報告人卡 -->
+    <div class="presenter-card">
+      <div class="lbl">REPORTED BY · 報告人</div>
+      <div class="info">工商組碩專一 &nbsp;·&nbsp; 114098507<span class="name">卓彥夆</span></div>
+    </div>
+
+    <div class="authors">
+      <div class="name">原作者&nbsp;&nbsp;蔡義清 &middot; 施柏仲 &middot; 黃新福</div>
+      <div class="pub">
+        Tsaih Yi-Ching · Shih Po-Chung · Huang Hsin-Fu<br/>
+        Published 2025 · Peer Reviewed
+      </div>
+    </div>
+  </div>
+  <div class="scrolldown">SCROLL ↓ 開始閱讀</div>
+</header>
+
+<!-- ═══════════════ PART 1 ═══════════════ -->
+<section class="chapter-divider" id="part1">
+  <div class="num reveal">01</div>
+  <h2 class="title reveal d1">Why It Matters</h2>
+  <div class="sub reveal d2">PART ONE &nbsp;·&nbsp; 品牌定位與產品策略的重要性</div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 1.1 CONTEXT</span>
+  <h2 class="section-title reveal d1">數位時代的競爭挑戰</h2>
+  <div class="section-en reveal d2">Three structural pressures forcing brand transformation</div>
+  <p class="lede reveal d3">在這個產業裡,企業會同時面對三個結構性壓力,品牌定位也因此從「行銷議題」升格為「企業層級的策略議題」。</p>
+
+  <div class="cards cols-3">
+    <div class="card reveal d1">
+      <span class="tag">01</span>
+      <h3>技術加速迭代<span class="en">Tech Cycles</span></h3>
+      <p>Mini LED、Micro LED、8K、AI 整合接連登場,從研發到量產的週期被壓縮至 <strong>18–24 個月</strong>。技術領先變成短期紅利,品牌長期意義才是護城河。</p>
+    </div>
+    <div class="card reveal d2">
+      <span class="tag">02</span>
+      <h3>客戶需求個人化<span class="en">Personalization</span></h3>
+      <p>從<strong>一對多大眾傳播</strong>轉向<strong>一對一體驗行銷</strong>。客戶不再只看規格,更看品牌能否提供場景解決方案、服務承諾與情感認同。</p>
+    </div>
+    <div class="card reveal d3">
+      <span class="tag">03</span>
+      <h3>全球化競爭加劇<span class="en">Global Rivalry</span></h3>
+      <p>韓、日、中、台廠商在<strong>價格與創新</strong>兩條戰線同時開打。沒有清晰品牌定位的廠商,容易陷入殺價泥淖,失去溢價能力。</p>
+    </div>
+  </div>
+
+  <p class="lede reveal" style="margin-top:36px; font-style:italic; color:var(--ink-soft);">三項壓力同時作用,使品牌定位從「行銷議題」升格為「企業層級的策略議題」。</p>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 1.2 CONCEPTUAL FRAME</span>
+  <h2 class="section-title reveal d1">競爭力的雙引擎</h2>
+  <div class="section-en reveal d2">Brand positioning sets direction. Product strategy delivers the promise.</div>
+
+  <div class="twincol">
+    <div class="reveal d2">
+      <div class="engine">
+        <div class="lbl">ENGINE 01</div>
+        <h3>品牌定位<span class="en">Brand Positioning</span></h3>
+        <p>回答「<strong>我們是誰、我們為誰服務</strong>」。定義價值主張、目標客群、與差異化——是策略的<strong>方向感</strong>。</p>
+      </div>
+      <div class="engine">
+        <div class="lbl">ENGINE 02</div>
+        <h3>產品策略<span class="en">Product Strategy</span></h3>
+        <p>回答「<strong>我們如何兌現承諾</strong>」。透過功能設計、通路、定價、推廣,把品牌主張<strong>具體化</strong>。</p>
+      </div>
+    </div>
+    <div class="reveal d3">
+      <div class="black-quote">
+        <div class="quote">「兩者協同,才是<br/>永續競爭優勢的<br/><span class="hl">核心驅動力</span>。」</div>
+        <div class="attrib">— 本研究核心假設</div>
+      </div>
+      <p style="margin-top:22px;font-size:14px;">缺乏一致性,品牌承諾將顯得空洞,產品上市也會失去方向。協同的兩者形成飛輪,在 B2B 商用市場尤為關鍵。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PART 2 ═══════════════ -->
+<section class="chapter-divider" id="part2">
+  <div class="num reveal">02</div>
+  <h2 class="title reveal d1">The Paper</h2>
+  <div class="sub reveal d2">PART TWO &nbsp;·&nbsp; 論文核心介紹</div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 2.1 RESEARCH GAP</span>
+  <h2 class="section-title reveal d1">研究動機 ─ 三項缺口</h2>
+  <div class="section-en reveal d2">Three identified gaps that justify this study</div>
+
+  <div class="cards cols-3" style="margin-top:32px;">
+    <div class="gap-card reveal d1">
+      <span class="gnum">GAP 01</span>
+      <h3>文獻分散</h3>
+      <p>多數研究將品牌定位與產品策略視為<strong>獨立領域</strong>;B2B 技術產業的<strong>整合性實證</strong>仍然稀少。</p>
+    </div>
+    <div class="gap-card reveal d2">
+      <span class="gnum">GAP 02</span>
+      <h3>產業實務空白</h3>
+      <p>大型商用顯示器具<strong>高技術門檻、快速迭代、B2B 銷售模式</strong>;通用消費品牌框架難以直接套用。</p>
+    </div>
+    <div class="gap-card reveal d3">
+      <span class="gnum">GAP 03</span>
+      <h3>競爭環境快速變動</h3>
+      <p>Mini LED、Micro LED、智慧連網重塑市場,需要<strong>近期、產業特定</strong>的證據與策略指引。</p>
+    </div>
+  </div>
+
+  <p class="lede reveal" style="margin-top:40px;">本研究透過<strong>四位高階主管深度訪談</strong>,以 Aaker (1998) 與 Miles &amp; Snow (1978) 為理論透鏡,填補上述缺口。</p>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 2.2 RESEARCH QUESTIONS</span>
+  <h2 class="section-title reveal d1">四個核心研究問題</h2>
+  <div class="section-en reveal d2">From direction to synergy</div>
+
+  <div class="cards cols-2" style="margin-top:32px;">
+    <div class="card accent reveal d1">
+      <span class="tag">RQ 01 · DIRECTION</span>
+      <h3>方向 ─ 品牌如何引導產品?</h3>
+      <p>品牌定位如何<strong>影響產品策略</strong>的規劃與制定?定位是否真正驅動產品決策,還是事後合理化?</p>
+    </div>
+    <div class="card reveal d2">
+      <span class="tag">RQ 02 · PROCESS</span>
+      <h3>過程 ─ 如何傳遞價值?</h3>
+      <p>企業如何透過產品策略<strong>傳達品牌價值</strong>,以實現定位目標?哪些機制讓承諾轉為體驗?</p>
+    </div>
+    <div class="card reveal d3">
+      <span class="tag">RQ 03 · OUTCOME</span>
+      <h3>成果 ─ 強化什麼?</h3>
+      <p>產品設計與開發如何<strong>強化競爭力</strong>與顧客認同?哪些設計選擇成為認知標記?</p>
+    </div>
+    <div class="card accent reveal d4">
+      <span class="tag">RQ 04 · SYNERGY</span>
+      <h3>協同 ─ 1+1 &gt; 2 的條件?</h3>
+      <p>品牌定位與產品策略的<strong>協同效應</strong>如何提升整體競爭優勢?在什麼條件下飛輪會啟動?</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 2.3 METHODOLOGY</span>
+  <h2 class="section-title reveal d1">研究方法 ─ 四位資深主管</h2>
+  <div class="section-en reveal d2">Semi-structured in-depth interviews</div>
+
+  <div class="twincol" style="margin-top:40px;">
+    <div class="reveal d2">
+      <h3>研究設計<span class="en">Research Design</span></h3>
+      <p>採用<strong>半結構式深度訪談</strong>,兼顧一致性與質性深度,能挖掘量化問卷無法揭露的「決策邏輯」與「價值認知」。</p>
+      <h3 style="margin-top:28px;">分析框架<span class="en">Analytical Frame</span></h3>
+      <p>以 <strong>Aaker (1998) 四面向品牌定位模型</strong>結合 <strong>Miles &amp; Snow (1978) 策略類型學</strong>,作為跨案例分析的理論透鏡。</p>
+    </div>
+    <div class="reveal d3">
+      <h3>受訪對象<span class="en">Interview Subjects</span></h3>
+      <div class="cards cols-2" style="margin-top:20px; gap:16px;">
+        <!-- Subject A: 整合符號 — 兩圓相交代表「跨部門整合」 -->
+        <div class="subject-card">
+          <div class="subject-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--vermilion);">
+              <circle cx="18" cy="24" r="11" />
+              <circle cx="30" cy="24" r="11" />
+              <path d="M18 13 L30 13 M18 35 L30 35" stroke-width="1" opacity=".4"/>
+              <circle cx="24" cy="24" r="2" fill="var(--vermilion)" stroke="none"/>
+            </svg>
+          </div>
+          <div class="subject-body">
+            <span class="label">SUBJECT A</span>
+            <div class="role">副總經理</div>
+            <p class="desc">產品研發與市場整合,跨部門整合經驗豐富</p>
+          </div>
+        </div>
+
+        <!-- Subject B: 同心圓 — 代表「品牌定位/精準目標」 -->
+        <div class="subject-card">
+          <div class="subject-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--vermilion);">
+              <circle cx="24" cy="24" r="18" opacity=".25"/>
+              <circle cx="24" cy="24" r="13" opacity=".5"/>
+              <circle cx="24" cy="24" r="8"/>
+              <circle cx="24" cy="24" r="3" fill="var(--vermilion)" stroke="none"/>
+              <line x1="24" y1="2" x2="24" y2="7" stroke-width="1.4"/>
+              <line x1="24" y1="41" x2="24" y2="46" stroke-width="1.4"/>
+              <line x1="2" y1="24" x2="7" y2="24" stroke-width="1.4"/>
+              <line x1="41" y1="24" x2="46" y2="24" stroke-width="1.4"/>
+            </svg>
+          </div>
+          <div class="subject-body">
+            <span class="label">SUBJECT B</span>
+            <div class="role">資深經理</div>
+            <p class="desc">品牌行銷 20 年資歷,對通路與定位敏銳</p>
+          </div>
+        </div>
+
+        <!-- Subject C: 網絡節點 — 代表「物聯網/跨平台整合」 -->
+        <div class="subject-card">
+          <div class="subject-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--vermilion);">
+              <line x1="24" y1="9" x2="9" y2="24" />
+              <line x1="24" y1="9" x2="39" y2="24" />
+              <line x1="9" y1="24" x2="24" y2="39" />
+              <line x1="39" y1="24" x2="24" y2="39" />
+              <line x1="9" y1="24" x2="39" y2="24" opacity=".4"/>
+              <line x1="24" y1="9" x2="24" y2="39" opacity=".4"/>
+              <circle cx="24" cy="9" r="3.5" fill="var(--paper)" stroke-width="1.8"/>
+              <circle cx="9" cy="24" r="3.5" fill="var(--paper)" stroke-width="1.8"/>
+              <circle cx="39" cy="24" r="3.5" fill="var(--paper)" stroke-width="1.8"/>
+              <circle cx="24" cy="39" r="3.5" fill="var(--paper)" stroke-width="1.8"/>
+              <circle cx="24" cy="24" r="3" fill="var(--vermilion)" stroke="none"/>
+            </svg>
+          </div>
+          <div class="subject-body">
+            <span class="label">SUBJECT C</span>
+            <div class="role">產品策略總監</div>
+            <p class="desc">主導物聯網轉型,熟悉跨平台整合</p>
+          </div>
+        </div>
+
+        <!-- Subject D: 顯示器螢幕+互動點 — 代表「互動顯示器/B2B」 -->
+        <div class="subject-card">
+          <div class="subject-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--vermilion);">
+              <rect x="6" y="9" width="36" height="24" rx="1" />
+              <line x1="18" y1="39" x2="30" y2="39" stroke-width="1.4"/>
+              <line x1="24" y1="33" x2="24" y2="39" stroke-width="1.4"/>
+              <circle cx="16" cy="18" r="2" fill="var(--vermilion)" stroke="none"/>
+              <circle cx="24" cy="22" r="2.5" fill="var(--vermilion)" stroke="none"/>
+              <circle cx="32" cy="17" r="1.6" fill="var(--vermilion)" stroke="none"/>
+              <line x1="16" y1="18" x2="24" y2="22" stroke-width=".8" opacity=".5"/>
+              <line x1="24" y1="22" x2="32" y2="17" stroke-width=".8" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="subject-body">
+            <span class="label">SUBJECT D</span>
+            <div class="role">產品行銷總監</div>
+            <p class="desc">互動顯示器專長,B2B 客戶第一線</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PART 3 ═══════════════ -->
+<section class="chapter-divider" id="part3">
+  <div class="num reveal">03</div>
+  <h2 class="title reveal d1">Theoretical Foundation</h2>
+  <div class="sub reveal d2">PART THREE &nbsp;·&nbsp; 理論基礎與相關研究</div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 3.1 AAKER (1998)</span>
+  <h2 class="section-title reveal d1">Aaker 四面向</h2>
+  <div class="section-en reveal d2">Strategic Market Management framework</div>
+
+  <!-- 對應 PPT slide 11:平面卡片,範例直接寫在卡片內(不翻牌) -->
+  <div class="cards cols-2" style="margin-top:32px;">
+    <div class="card reveal d1">
+      <span class="tag">面向 01 · IDENTITY</span>
+      <h3>識別與價值主張<span class="en">Identity</span></h3>
+      <p>品牌代表什麼?功能利益與情感利益的綜合體。<br/><strong>Apple ─ 創新與用戶體驗。</strong></p>
+    </div>
+    <div class="card reveal d2">
+      <span class="tag">面向 02 · AUDIENCE</span>
+      <h3>目標客群<span class="en">Target Audience</span></h3>
+      <p>明確的客戶區隔。訊息、通路與產品線索皆對齊該客群。<br/><strong>Rolex ─ 高淨值人士。</strong></p>
+    </div>
+    <div class="card reveal d3">
+      <span class="tag">面向 03 · COMMUNICATION</span>
+      <h3>主動溝通<span class="en">Active Communication</span></h3>
+      <p>內部清晰的定位必須主動向外表達,否則只是內部口號。<br/><strong>Nike ─ Just Do It。</strong></p>
+    </div>
+    <div class="card accent reveal d4">
+      <span class="tag">面向 04 · DIFFERENTIATION</span>
+      <h3>差異化<span class="en">Differentiation</span></h3>
+      <p>在顧客心中佔據獨特的位置。<strong>差異化不是「更好」,而是「不一樣」且「有價值」。</strong></p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 3.2 MILES &amp; SNOW (1978)</span>
+  <h2 class="section-title reveal d1">策略類型學</h2>
+  <div class="section-en reveal d2">Four strategic postures, only three are coherent</div>
+
+  <div class="cards cols-2" style="margin-top:32px;">
+    <div class="card reveal d1">
+      <span class="tag">TYPE 01</span>
+      <h3>防禦者 <span style="color:var(--moss);">Defender</span></h3>
+      <p>固守穩定市場、既有產品,專注<strong>營運效率</strong>。低風險、低敏捷。</p>
+    </div>
+    <div class="card accent reveal d2">
+      <span class="tag">TYPE 02</span>
+      <h3>探勘者 <span style="color:var(--vermilion);">Prospector</span></h3>
+      <p>持續創新、尋求<strong>新機會</strong>;高 R&amp;D 投入,先行者優勢。</p>
+    </div>
+    <div class="card reveal d3">
+      <span class="tag">TYPE 03</span>
+      <h3>分析者 <span style="color:var(--ochre);">Analyzer</span></h3>
+      <p>兼顧穩定與選擇性創新;觀察 Prospector,選擇性跟進。</p>
+    </div>
+    <div class="card dim reveal d4">
+      <span class="tag">TYPE 04</span>
+      <h3>反應者 <span style="color:var(--ink-soft);">Reactor</span></h3>
+      <p>缺乏一致策略姿態的<strong>被動回應者</strong>。Miles &amp; Snow 認為此類在長期將被淘汰。</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 3.3 SYNERGY</span>
+  <h2 class="section-title reveal d1">品牌與產品的三種協同</h2>
+  <div class="section-en reveal d2">Three modes of mutual reinforcement</div>
+
+  <div class="flywheel-wrap">
+    <div class="reveal d2">
+      <svg class="flywheel" viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="ggrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c3382a" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#c3382a" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="190" fill="url(#ggrad)"/>
+        <g class="ring">
+          <circle cx="200" cy="200" r="180" fill="none" stroke="#1a1612" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="200" y="35" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c3382a" letter-spacing="2">BRAND POSITIONING</text>
+          <text x="370" y="205" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c3382a" letter-spacing="2" transform="rotate(90,370,205)">PRODUCT STRATEGY</text>
+          <text x="200" y="380" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c3382a" letter-spacing="2">CUSTOMER PERCEPTION</text>
+          <text x="30" y="205" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#c3382a" letter-spacing="2" transform="rotate(-90,30,205)">PREMIUM PRICING</text>
+        </g>
+        <g class="ring rev">
+          <circle cx="200" cy="200" r="130" fill="none" stroke="#c3382a" stroke-width="1.5"/>
+          <circle cx="200" cy="70" r="6" fill="#c3382a"/>
+          <circle cx="330" cy="200" r="6" fill="#c3382a"/>
+          <circle cx="200" cy="330" r="6" fill="#c3382a"/>
+          <circle cx="70" cy="200" r="6" fill="#c3382a"/>
+        </g>
+        <circle cx="200" cy="200" r="80" fill="#1a1612"/>
+        <text x="200" y="190" text-anchor="middle" font-family="Noto Serif TC" font-size="28" font-weight="700" fill="#f4ede0">飛輪</text>
+        <text x="200" y="220" text-anchor="middle" font-family="Fraunces" font-size="14" font-style="italic" fill="#c3382a">Flywheel</text>
+      </svg>
+    </div>
+    <div>
+      <div class="cards" style="grid-template-columns:1fr; gap:14px;">
+        <div class="card reveal d1">
+          <span class="tag">MODE 01</span>
+          <h3>品牌 → 產品<span class="en">Brand to Product</span></h3>
+          <p>品牌定位提供<strong>方向、價值基礎、核心原則</strong>。Apple 將「高端創新」定位轉譯為工業設計與生態系整合。</p>
+        </div>
+        <div class="card reveal d2">
+          <span class="tag">MODE 02</span>
+          <h3>產品 → 品牌<span class="en">Product to Brand</span></h3>
+          <p>產品策略<strong>強化並具體化</strong>品牌定位。Tesla 持續電動車技術領先,鞏固「未來移動」品牌形象。</p>
+        </div>
+        <div class="card accent reveal d3">
+          <span class="tag">MODE 03 ★</span>
+          <h3>協同飛輪<span class="en">Synergistic Effect</span></h3>
+          <p>高度一致時,兩者形成<strong>飛輪</strong>:高解析智慧連網新品深化「專業、智慧」品牌認知,進而支撐溢價。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pullquote reveal">本研究主張:<span class="vermilion">模式三</span>是大型商用顯示器產業<br/>長期競爭優勢的關鍵。</div>
+</section>
+
+<!-- ═══════════════ PART 4 ═══════════════ -->
+<section class="chapter-divider" id="part4">
+  <div class="num reveal">04</div>
+  <h2 class="title reveal d1">Market Analysis</h2>
+  <div class="sub reveal d2">PART FOUR &nbsp;·&nbsp; 大型商用顯示器市場分析</div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 4.1 GLOBAL MARKET SIZE</span>
+  <h2 class="section-title reveal d1">全球市場規模</h2>
+  <div class="section-en reveal d2">From USD 287B in 2024 to USD 459B in 2030</div>
+
+  <div class="bignum-wrap reveal">
+    <div class="bignum-prefix">USD</div>
+    <div class="bignum" id="bignum287">287<span class="unit">B</span></div>
+  </div>
+  <div class="bignum-source reveal d1">2024 全球數位看板市場規模 &nbsp;·&nbsp; Source: Grand View Research, 2024</div>
+
+  <div class="cards cols-3" style="margin-top:56px; border-top:2px solid var(--ink); padding-top:32px;">
+    <div class="reveal d1">
+      <div class="bignum-prefix">2030 預估</div>
+      <div style="font-family:Fraunces,serif; font-size:54px; font-weight:300; line-height:1; margin-top:8px;">USD 459<span style="font-size:.5em;color:var(--vermilion);">B</span></div>
+    </div>
+    <div class="reveal d2">
+      <div class="bignum-prefix">CAGR 年複合成長率</div>
+      <div style="font-family:Fraunces,serif; font-size:54px; font-weight:300; line-height:1; margin-top:8px;">8.1<span style="font-size:.5em;color:var(--vermilion);">%</span></div>
+    </div>
+    <div class="reveal d3">
+      <div class="bignum-prefix">主要驅動因子</div>
+      <p style="font-size:14px; margin-top:10px; line-height:1.6;">DOOH · AI · 智慧城市 · 互動觸控</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 4.2 REGIONAL &amp; PRODUCT MIX</span>
+  <h2 class="section-title reveal d1">區域分布與產品組合</h2>
+  <div class="section-en reveal d2">2024 distribution and category breakdown</div>
+
+  <div class="cards cols-2" style="margin-top:40px;">
+    <div class="reveal d1">
+      <h3>區域市佔率<span class="en">By Region</span></h3>
+      <div class="barchart">
+        <div class="bar"><span class="name">北美 <span class="en">N. America</span></span><span class="track"><span class="fill" data-pct="34.2"></span></span><span class="pct">34.2%</span></div>
+        <div class="bar"><span class="name">亞太 <span class="en">Asia Pacific</span></span><span class="track"><span class="fill" data-pct="30" style="background:var(--moss);"></span></span><span class="pct">30.0%</span></div>
+        <div class="bar"><span class="name">歐洲 <span class="en">Europe</span></span><span class="track"><span class="fill" data-pct="28.1" style="background:var(--ochre);"></span></span><span class="pct">28.1%</span></div>
+        <div class="bar"><span class="name">中東與非洲 <span class="en">MEA</span></span><span class="track"><span class="fill" data-pct="3.6" style="background:var(--ink-soft);"></span></span><span class="pct">3.6%</span></div>
+      </div>
+      <p style="margin-top:16px; font-size:13.5px;">亞太是<span style="color:var(--vermilion);font-weight:700;">成長最快</span>的區域,智慧城市投資與零售數位轉型為主要動能。</p>
+    </div>
+    <div class="reveal d2">
+      <h3>產品類別組合<span class="en">By Product</span></h3>
+      <div class="barchart">
+        <div class="bar"><span class="name">影像牆 <span class="en">Video Walls</span></span><span class="track"><span class="fill" data-pct="26.8"></span></span><span class="pct">26.8%</span></div>
+        <div class="bar"><span class="name">影像螢幕 <span class="en">Video Screens</span></span><span class="track"><span class="fill" data-pct="22"></span></span><span class="pct">22.0%</span></div>
+        <div class="bar"><span class="name">互動 Kiosk <span class="en">Kiosks</span></span><span class="track"><span class="fill" data-pct="16" style="background:var(--moss);"></span></span><span class="pct">16.0%</span></div>
+        <div class="bar"><span class="name">數位海報 <span class="en">Digital Posters</span></span><span class="track"><span class="fill" data-pct="13" style="background:var(--ochre);"></span></span><span class="pct">13.0%</span></div>
+        <div class="bar"><span class="name">透明 LED <span class="en">Transparent LED</span></span><span class="track"><span class="fill" data-pct="8.5" style="background:var(--vermilion-deep);"></span></span><span class="pct">8.5%</span></div>
+      </div>
+      <p style="margin-top:16px; font-size:13.5px;">透明 LED 雖佔比最低,卻是<span style="color:var(--vermilion);font-weight:700;">成長最快</span>的品類,適用於精品零售與汽車展示。</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 4.3 COMPETITIVE LANDSCAPE</span>
+  <h2 class="section-title reveal d1">全球競爭格局</h2>
+  <div class="section-en reveal d2">Top vendors, leading players, innovation trends</div>
+
+  <div class="cards cols-4" style="margin-top:32px;">
+    <div class="card-light reveal d1">
+      <span class="label">前 5 大廠商</span>
+      <h3>市佔過半</h3>
+      <p>前 5 大廠商合計市佔超過 <strong>55%</strong>。Samsung 單一品牌約 <strong>33%</strong>,連續 <strong>15 年</strong>位居首位。</p>
+    </div>
+    <div class="card-light reveal d2">
+      <span class="label">領先廠商</span>
+      <h3>韓日為主</h3>
+      <p>Samsung (KR)、LG (KR)、Sharp NEC (JP)、Sony (JP)、Panasonic (JP)、Daktronics (US)。</p>
+    </div>
+    <div class="card-light reveal d3">
+      <span class="label">亞太成長</span>
+      <h3>CAGR ~8.5%</h3>
+      <p>智慧城市基礎建設投資與零售數位轉型驅動,台灣廠商位置有利。</p>
+    </div>
+    <div class="card-light reveal d4">
+      <span class="label">創新趨勢</span>
+      <h3>新世代顯示</h3>
+      <p>Mini LED、Micro LED、透明 OLED 重塑市場;透明 LED 為成長最快品類。</p>
+    </div>
+  </div>
+
+  <div class="pullquote reveal">高集中度市場意味著新進者必須以<span class="vermilion">清晰差異化定位</span>切入,<br/>而非與龍頭比拚規模。</div>
+</section>
+
+<!-- ═══════════════ PART 5 ═══════════════ -->
+<section class="chapter-divider" id="part5">
+  <div class="num reveal">05</div>
+  <h2 class="title reveal d1">Company Cases</h2>
+  <div class="sub reveal d2">PART FIVE &nbsp;·&nbsp; 上市櫃公司品牌策略案例</div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 5.1 ─ 5.3 CASE STUDIES</span>
+  <h2 class="section-title reveal d1">三組案例研究</h2>
+  <div class="section-en reveal d2">點擊切換 · 友達/群創 vs 佳世達 BenQ vs 冠捷 TPV</div>
+
+  <div class="case-tabs reveal d1" role="tablist" style="margin-top:40px;">
+    <button class="active" data-case="auo-innolux">面板雙雄<span class="en">AUO &amp; Innolux</span></button>
+    <button data-case="qisda">佳世達 大艦隊<span class="en">Qisda Big Fleet</span></button>
+    <button data-case="tpv">冠捷 30→1<span class="en">TPV Multi-Brand</span></button>
+  </div>
+
+  <!-- 案例 1 -->
+  <div class="case-panel active" data-case-panel="auo-innolux">
+    <div class="cards cols-2">
+      <div class="co-card">
+        <div class="co-ticker">TWSE 2409 · AUO 友達</div>
+        <div class="co-name">友達<span class="en">AUO</span></div>
+        <div class="co-rev">NT$ 2,480 億 <span class="yoy up">YoY +0.5%</span></div>
+        <div class="co-rev-label">2023 年營收</div>
+        <div class="co-blurb">
+          <p><strong>從面板代工轉型為「整合解決方案提供者」。</strong></p>
+          <ul>
+            <li>商用顯示、車用、Micro LED 多軸並進</li>
+            <li>收購德國 BHTC 跨入車用座艙</li>
+            <li>強調超高亮度與可擴展性,建立技術領先品牌</li>
+            <li>策略姿態:<strong>Prospector</strong> 探勘者</li>
+          </ul>
+        </div>
+      </div>
+      <div class="co-card">
+        <div class="co-ticker">TWSE 3481 · Innolux 群創</div>
+        <div class="co-name">群創<span class="en">Innolux</span></div>
+        <div class="co-rev">NT$ 2,117 億 <span class="yoy dn">YoY −5.4%</span></div>
+        <div class="co-rev-label">2023 年營收</div>
+        <div class="co-blurb">
+          <p><strong>專注面板生產專業,轉向先進封裝。</strong></p>
+          <ul>
+            <li>推動 FOPLP 扇出型面板級封裝</li>
+            <li>強化車用顯示器布局</li>
+            <li>雖營收下滑,但體現對市場需求的積極調適</li>
+            <li>策略姿態:<strong>Analyzer</strong> 分析者</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:32px; font-style:italic; color:var(--ink);">同源面板兄弟,選擇了「<span style="color:var(--vermilion);font-weight:700;">整合解決方案</span>」與「<span style="color:var(--vermilion);font-weight:700;">製程深耕</span>」兩條截然不同的品牌路徑。</p>
+  </div>
+
+  <!-- 案例 2 -->
+  <div class="case-panel" data-case-panel="qisda">
+    <div class="cards cols-2">
+      <div class="co-card">
+        <div class="co-ticker">TWSE 2352 · Qisda 佳世達</div>
+        <div class="co-name">佳世達<span class="en">Qisda</span></div>
+        <div class="co-rev">NT$ 1,529 億</div>
+        <div class="co-rev-label">2023 Q1–Q3 營收 · 毛利率 16.3% (20 年新高) · BenQ 占約 15% · FY2025 EPS 0.64</div>
+
+        <h3 style="margin-top:28px;">大艦隊成員<span class="en">Big Fleet</span></h3>
+        <div class="fleet">
+          <div class="fleet-member">拍檔</div>
+          <div class="fleet-member">聚碩</div>
+          <div class="fleet-member">友通</div>
+          <div class="fleet-member">邁達特</div>
+          <div class="fleet-member">其陽</div>
+        </div>
+      </div>
+      <div>
+        <h3>四大情境<span class="en">Four Scenarios</span></h3>
+        <p>透過<strong>情境規劃</strong>預測市場變化,將產品開發對齊新興趨勢與顧客需求。</p>
+        <div class="scenarios">
+          <div class="scenario"><strong>家庭情境</strong><span>居家娛樂、健康監測</span></div>
+          <div class="scenario moss"><strong>職人情境</strong><span>專業創作、設計工作站</span></div>
+          <div class="scenario ochre"><strong>教育情境</strong><span>互動白板、遠距教學</span></div>
+          <div class="scenario ink"><strong>商用情境</strong><span>會議、零售、數位看板</span></div>
+        </div>
+        <p style="margin-top:22px; font-style:italic; color:var(--ink);">大艦隊式整合 + 情境化產品 = <span style="color:var(--vermilion);font-weight:700;">跨子公司無縫整合的營運效率</span>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 案例 3 -->
+  <div class="case-panel" data-case-panel="tpv">
+    <div class="cards cols-2">
+      <div>
+        <h3>品牌演化<span class="en">Brand Evolution</span></h3>
+        <p>從<strong>代工龍頭</strong>蛻變為<strong>多品牌主</strong>,將曾經分散的 30 個 OEM 客戶整合為自有品牌矩陣。</p>
+
+        <h3 style="margin-top:28px;">四品牌組合<span class="en">Four-Brand Portfolio</span></h3>
+        <div class="brand-grid">
+          <div class="brand-cell"><span class="lbl">主流市場</span><div class="nm">AOC</div><div class="ds">大眾消費級顯示器</div></div>
+          <div class="brand-cell"><span class="lbl">高端市場</span><div class="nm">Philips</div><div class="ds">專業與商用旗艦(品牌授權)</div></div>
+          <div class="brand-cell"><span class="lbl">價值市場</span><div class="nm">Envision</div><div class="ds">入門價值定位</div></div>
+          <div class="brand-cell"><span class="lbl">區域市場</span><div class="nm">TopView</div><div class="ds">特定地區品牌</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="tpv-hero">
+          <div class="label">STRATEGIC POSTURE</div>
+          <div class="arrow">30<span class="arr">→</span>1</div>
+          <div class="desc">從<strong>三十個代工客戶</strong>到<em>一個自有品牌集團</em>。冠捷的轉型代表台灣顯示器產業<strong>「OEM 到 OBM」</strong>的關鍵案例。</div>
+          <div class="footnote">市場擴張 + 持續 R&amp;D · 全球布局橫跨成熟與新興市場</div>
+        </div>
+        <p style="margin-top:22px;">同一家公司,可以擁有「<strong>多個並存的品牌定位</strong>」,只要產品策略對齊各自客群,協同效應就會出現。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 5.4 CROSS-CASE SYNTHESIS</span>
+  <h2 class="section-title reveal d1">訪談發現 ↔ Aaker 四面向</h2>
+  <div class="section-en reveal d2">Mapping qualitative insights to the theoretical frame</div>
+
+  <div class="cards cols-2" style="margin-top:32px;">
+    <div class="card reveal d1">
+      <span class="tag">DIM 01 · IDENTITY</span>
+      <h3>識別與價值</h3>
+      <p>透過<strong>技術領先</strong>與<strong>B2B 專業度</strong>建立差異化。價值主張需在客戶心中與「<strong>可靠、專業</strong>」綁定。</p>
+    </div>
+    <div class="card reveal d2">
+      <span class="tag">DIM 02 · AUDIENCE</span>
+      <h3>目標客群</h3>
+      <p>依產業垂直深度區隔:零售、教育、企業、運輸。<strong>場景化</strong>而非單純規格化思維。</p>
+    </div>
+    <div class="card reveal d3">
+      <span class="tag">DIM 03 · COMMUNICATION</span>
+      <h3>主動溝通</h3>
+      <p>市場溝通與內容行銷的<strong>精準度</strong>決定品牌觸達。專業展會、客製案例為關鍵載體。</p>
+    </div>
+    <div class="card accent reveal d4">
+      <span class="tag">DIM 04 · DIFFERENTIATION</span>
+      <h3>競爭優勢</h3>
+      <p><strong>策略性放棄</strong>(不做什麼)與<strong>資源集中</strong>(極致做好什麼),共同構成競爭優勢。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PART 6 ═══════════════ -->
+<section class="chapter-divider" id="part6">
+  <div class="num reveal">06</div>
+  <h2 class="title reveal d1">Conclusions</h2>
+  <div class="sub reveal d2">PART SIX &nbsp;·&nbsp; 結論與建議</div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 6.1 RESEARCH FINDINGS</span>
+  <h2 class="section-title reveal d1">四項關鍵研究發現</h2>
+  <div class="section-en reveal d2">Synthesizing the empirical evidence</div>
+
+  <div class="cards cols-4" style="margin-top:32px;">
+    <div class="card reveal d1">
+      <span class="tag">FIND 01</span>
+      <h3>方向有效</h3>
+      <p>品牌定位<strong>有效引導</strong>大型商用顯示器產業的產品策略方向,並非僅是事後合理化。</p>
+    </div>
+    <div class="card reveal d2">
+      <span class="tag">FIND 02</span>
+      <h3>產品強化品牌</h3>
+      <p>精準的產品策略<strong>反向強化</strong>品牌定位與價值傳達,構成正向回饋。</p>
+    </div>
+    <div class="card reveal d3">
+      <span class="tag">FIND 03</span>
+      <h3>設計即認知</h3>
+      <p>產品設計<strong>關鍵性地</strong>影響品牌價值實現及顧客認知,設計選擇成為認知標記。</p>
+    </div>
+    <div class="card accent reveal d4">
+      <span class="tag">FIND 04 ★</span>
+      <h3>協同 = 護城河</h3>
+      <p>品牌定位與產品策略的<strong>協同效應</strong>,是大型商用顯示器產業<strong>永續競爭優勢</strong>的關鍵。</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <span class="part-label reveal">§ 6.2 INDUSTRY RECOMMENDATIONS</span>
+  <h2 class="section-title reveal d1">四項實務建議</h2>
+  <div class="section-en reveal d2">Practical guidance for industry practitioners</div>
+
+  <div class="cards cols-4" style="margin-top:32px;">
+    <div class="card-light reveal d1">
+      <span class="label">REC 01</span>
+      <h3>建立整合策略</h3>
+      <p>將<strong>品牌定位</strong>放在策略規劃核心,從研發初期就讓品牌團隊參與決策。</p>
+    </div>
+    <div class="card-light reveal d2">
+      <span class="label">REC 02</span>
+      <h3>加強市場洞察</h3>
+      <p>定期顧客<strong>痛點訪談</strong>、競爭對手監控、情境研究,以深化差異化策略。</p>
+    </div>
+    <div class="card-light reveal d3">
+      <span class="label">REC 03</span>
+      <h3>實施數據驅動</h3>
+      <p>建立 KPI 儀表板、進行 <strong>A/B 測試</strong>、即時反饋機制以優化品牌溝通。</p>
+    </div>
+    <div class="card-light reveal d4">
+      <span class="label">REC 04</span>
+      <h3>維持策略彈性</h3>
+      <p><strong>每季</strong>策略檢視、利益相關者溝通平台、快速授權決策以應對環境變化。</p>
+    </div>
+  </div>
+
+  <div class="pullquote reveal" style="margin-top:64px;">品牌定位是<span class="vermilion">錨</span>,產品策略是<span class="vermilion">帆</span><br/>—— 兩者協同,企業才能在風浪中持續前行。</div>
+</section>
+
+<!-- ═══════════════ 延伸閱讀 ═══════════════ -->
+<section class="chapter" id="refs">
+  <span class="part-label reveal">APPENDIX</span>
+  <h2 class="section-title reveal d1">延伸閱讀</h2>
+  <div class="section-en reveal d2">References &nbsp;·&nbsp; 理論文獻與市場報告</div>
+
+  <div class="ref-list">
+    <div class="ref-item reveal d1">
+      <div class="idx">01</div>
+      <div class="content">
+        <span class="title">蔡義清, 施柏仲, 黃新福 (2025). 品牌定位與產品策略之研究:以大型商用顯示器產業為例.</span>
+        <span class="meta">Management Information Computing, 14, SP_14.0011. DOI: 10.6285/MIC.202507/SP_14.0011</span>
+      </div>
+      <span class="badge book">論文</span>
+    </div>
+    <div class="ref-item reveal d2">
+      <div class="idx">02</div>
+      <div class="content">
+        <span class="title">Aaker, D. A. (1998). Strategic Market Management (5th ed.). John Wiley &amp; Sons.</span>
+        <span class="meta">品牌定位四面向理論框架</span>
+      </div>
+      <span class="badge book">理論</span>
+    </div>
+    <div class="ref-item reveal d3">
+      <div class="idx">03</div>
+      <div class="content">
+        <span class="title">Miles, R. E., &amp; Snow, C. C. (1978). Organizational Strategy, Structure, and Process. McGraw-Hill.</span>
+        <span class="meta">策略類型學:Defender / Prospector / Analyzer / Reactor</span>
+      </div>
+      <span class="badge book">理論</span>
+    </div>
+    <div class="ref-item reveal d4">
+      <div class="idx">04</div>
+      <div class="content">
+        <span class="title">Grand View Research (2024). Digital Signage Market Size, Share &amp; Trends Analysis Report, 2024 – 2030.</span>
+        <span class="meta">全球數位看板市場規模 USD 287B → USD 459B,CAGR 8.1%</span>
+      </div>
+      <span class="badge">市調</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER — 對應 PPT slide 26 ═══════════════ -->
+<footer>
+  <div style="max-width:1400px; margin:0 auto;">
+    <div class="foot-top">
+      <div class="fin-mark">— FIN —</div>
+      <div class="presenter-tag">
+        <div class="lbl">報告人 · REPORTED BY</div>
+        <div class="info">
+          工商組碩專一 &nbsp;<span class="id">114098507</span>
+          <span class="name">卓彥夆</span>
+        </div>
+      </div>
+    </div>
+    <!-- 單行 Any Questions ? -->
+    <div class="fbignum">Any Questions<em>&nbsp;?</em></div>
+
+    <div class="fcols">
+      <div class="fcol">
+        <div class="lbl">致謝</div>
+        <p style="font-family:'Noto Serif TC',serif; font-size:17px; color:var(--paper);">感謝聆聽<br/>歡迎提問與討論</p>
+      </div>
+      <div class="fcol">
+        <div class="lbl">Citation</div>
+        <p class="cite">
+          蔡義清 · 施柏仲 · 黃新福 (2025).<br/>
+          品牌定位與產品策略之研究:<br/>
+          以大型商用顯示器產業為例.<br/>
+          <strong>Management Information Computing, 14, SP_14.0011.</strong>
+        </p>
+      </div>
+      <div class="fcol">
+        <div class="lbl">研究機構</div>
+        <p style="font-family:'Noto Serif TC',serif; font-size:17px; color:var(--paper);">銘傳大學</p>
+        <p style="font-family:'Fraunces',serif; font-style:italic; font-size:13px; color:var(--paper-deep); margin-top:4px;">Ming Chuan University</p>
+      </div>
+    </div>
+
+    <div class="credits">
+      工商組碩專一 &nbsp;<span class="v">·</span>&nbsp; 114098507 &nbsp;<span class="v">·</span>&nbsp; 卓彥夆 &nbsp;<span class="v">·</span>&nbsp;
+      報告網頁 &nbsp;<span class="v">·</span>&nbsp; 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ─── LED 矩陣 Hero 背景 ───
+  const canvas = document.getElementById("ledcanvas");
+  const ctx = canvas.getContext("2d");
+  let W, H, cols, rows;
+  const cellSize = 14;
+  let dots = [];
+
+  function resize(){
+    W = canvas.width = canvas.offsetWidth * devicePixelRatio;
+    H = canvas.height = canvas.offsetHeight * devicePixelRatio;
+    cols = Math.ceil(W / (cellSize * devicePixelRatio));
+    rows = Math.ceil(H / (cellSize * devicePixelRatio));
+    dots = [];
+    for (let r = 0; r < rows; r++){
+      for (let c = 0; c < cols; c++){
+        dots.push({
+          x: c * cellSize * devicePixelRatio,
+          y: r * cellSize * devicePixelRatio,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+    }
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  let t = 0;
+  function draw(){
+    ctx.fillStyle = "rgba(244, 237, 224, 0.18)";
+    ctx.fillRect(0, 0, W, H);
+    t += 0.012;
+    for (const d of dots){
+      const dx = d.x - W * 0.75;
+      const dy = d.y - H * 0.5;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const wave = Math.sin(dist * 0.012 - t * 2.5 + d.phase);
+      const intensity = (wave + 1) / 2;
+      if (intensity > 0.65){
+        ctx.fillStyle = `rgba(195, 56, 42, ${intensity * 0.35})`;
+        const r = (cellSize * devicePixelRatio) * 0.4;
+        ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, Math.PI * 2); ctx.fill();
+      } else if (intensity > 0.4){
+        ctx.fillStyle = `rgba(182, 130, 44, ${intensity * 0.22})`;
+        const r = (cellSize * devicePixelRatio) * 0.28;
+        ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, Math.PI * 2); ctx.fill();
+      } else {
+        ctx.fillStyle = `rgba(26, 22, 18, ${0.06 + intensity * 0.04})`;
+        const r = (cellSize * devicePixelRatio) * 0.18;
+        ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // ─── 滾動進度條 ───
+  const prog = document.getElementById("prog");
+  function updateProgress(){
+    const sh = document.documentElement.scrollHeight - window.innerHeight;
+    const p = (window.scrollY / sh) * 100;
+    prog.style.setProperty("--p", p + "%");
+  }
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+
+  // ─── Nav 切換 active ───
+  const navlinks = document.querySelectorAll("nav.top .navlinks a");
+  const sections = Array.from(navlinks).map(a => document.getElementById(a.dataset.target));
+  function highlightNav(){
+    const y = window.scrollY + 120;
+    let curIdx = 0;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) curIdx = i; });
+    navlinks.forEach((a, i) => a.classList.toggle("active", i === curIdx));
+  }
+  window.addEventListener("scroll", highlightNav, { passive: true });
+
+  // ─── Reveal 動畫 ───
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -80px 0px" });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  // bar 動畫 — 讀取 data-pct 套用實際寬度
+  const barIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        const fill = e.target.querySelector(".fill");
+        if (fill && !fill.style.width){
+          const pct = fill.getAttribute("data-pct");
+          requestAnimationFrame(() => {
+            fill.style.width = pct + "%";
+          });
+        }
+        barIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll(".bar").forEach(b => barIO.observe(b));
+
+  // 保底:1.5 秒後檢查所有 bar,沒填的補上(防止 observer 漏掉一開始就在視窗內的)
+  setTimeout(() => {
+    document.querySelectorAll(".bar .fill").forEach(fill => {
+      if (!fill.style.width){
+        const pct = fill.getAttribute("data-pct");
+        if (pct) fill.style.width = pct + "%";
+      }
+    });
+  }, 1500);
+
+  // ─── 數字計數動畫 ───
+  function animateNumber(el, target, duration = 1800){
+    const start = performance.now();
+    const unitMatch = el.innerHTML.match(/<span[^>]*>.*?<\/span>/);
+    const unit = unitMatch ? unitMatch[0] : "";
+    function step(now){
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const cur = Math.round(target * eased);
+      el.innerHTML = cur + unit;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const bn287 = document.getElementById("bignum287");
+  if (bn287){
+    const numIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          animateNumber(bn287, 287);
+          numIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    numIO.observe(bn287);
+  }
+
+  // ─── 公司案例 Tab ───
+  const caseTabs = document.querySelectorAll(".case-tabs button");
+  caseTabs.forEach(btn => {
+    btn.addEventListener("click", () => {
+      caseTabs.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll(".case-panel").forEach(p => {
+        p.classList.toggle("active", p.dataset.casePanel === btn.dataset.case);
+      });
+    });
+  });
+
+  // 平滑滾動
+  document.querySelectorAll("nav.top a").forEach(a => {
+    a.addEventListener("click", e => {
+      const id = a.getAttribute("href");
+      if (id.startsWith("#")){
+        e.preventDefault();
+        const el = document.querySelector(id);
+        if (el){ window.scrollTo({ top: el.offsetTop - 70, behavior: "smooth" }); }
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
